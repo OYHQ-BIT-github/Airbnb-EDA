@@ -39,63 +39,63 @@ with open(geojson_path, 'r') as f:
 features = geojson_data['features'][0]
 print(features)
 
-# ##### Map 1 #####
-# # 房源数量分布图
-# Am_map_1 = folium.Map(location=[Amsterdam_latitude, Amsterdam_longitude], zoom_start=12)
-# # 房源数量统计
-# neighbourhood = pd.DataFrame(airbnb['neighbourhood'].groupby(airbnb['neighbourhood']).count())
-# neighbourhood.rename(columns={'neighbourhood': 'number of rooms'}, inplace=True)
-# neighbourhood.reset_index(level=0, inplace=True)
-#
-# # 设置社区标签
-# create_neighbourhood_marker(Am_geo, Am_map_1)
-# # 绘制分布图
-# choropleth_map = folium.Choropleth(geo_data=geojson_path,
-#                                    data=neighbourhood,
-#                                    columns=['neighbourhood', 'number of rooms'],
-#                                    key_on='feature.properties.neighbourhood',
-#                                    fill_color='YlOrRd',
-#                                    legend_name='Number of Rooms')
-# choropleth_map.add_to(Am_map_1)
-#
-# # 保存房源数量分布图
-# Am_map_1.save('Amsterdam_Room_Number_Choropleth.html')
-#
-# ##### Map 2 #####
-# # 房源分布热力图
-# Am_map_2 = folium.Map(location=[Amsterdam_latitude, Amsterdam_longitude], zoom_start=12)
-#
-# # 绘制热力图
-# HeatMap(airbnb[['latitude', 'longitude']],
-#         radius=10,
-#         gradient={0.2: 'blue',
-#                   0.4: 'purple',
-#                   0.6: 'orange',
-#                   0.8: 'red'}).add_to(Am_map_2)
-#
-# # 保存房源分布热力图
-# Am_map_2.save('Amsterdam_Room_Heatmap.html')
-#
-# ##### Map 3 #####
-# # 房源评论数量分布图
-# Am_map_3 = folium.Map(location=[Amsterdam_latitude, Amsterdam_longitude], zoom_start=12)
-# # 房源评论数量统计
-# reviews = pd.DataFrame(airbnb['number_of_reviews'].groupby(airbnb['neighbourhood']).sum())
-# reviews.reset_index(level=0, inplace=True)
-#
-# # 设置社区标签
-# create_neighbourhood_marker(Am_geo, Am_map_3)
-# # 绘制分布图
-# choropleth_map = folium.Choropleth(geo_data=geojson_path,
-#                                    data=reviews,
-#                                    columns=['neighbourhood', 'number_of_reviews'],
-#                                    key_on='feature.properties.neighbourhood',
-#                                    fill_color='YlOrRd',
-#                                    legend_name='Number of Reviews')
-# choropleth_map.add_to(Am_map_3)
-#
-# # 保存房源评论数量分布图
-# Am_map_3.save('Amsterdam_Review_Number_Choropleth.html')
+##### Map 1 #####
+# 房源数量分布图
+Am_map_1 = folium.Map(location=[Amsterdam_latitude, Amsterdam_longitude], zoom_start=12)
+# 房源数量统计
+neighbourhood = pd.DataFrame(airbnb['neighbourhood'].groupby(airbnb['neighbourhood']).count())
+neighbourhood.rename(columns={'neighbourhood': 'number of rooms'}, inplace=True)
+neighbourhood.reset_index(level=0, inplace=True)
+
+# 设置社区标签
+create_neighbourhood_marker(Am_geo, Am_map_1)
+# 绘制分布图
+choropleth_map = folium.Choropleth(geo_data=geojson_path,
+                                   data=neighbourhood,
+                                   columns=['neighbourhood', 'number of rooms'],
+                                   key_on='feature.properties.neighbourhood',
+                                   fill_color='YlOrRd',
+                                   legend_name='Number of Rooms')
+choropleth_map.add_to(Am_map_1)
+
+# 保存房源数量分布图
+Am_map_1.save('Amsterdam_Room_Number_Choropleth.html')
+
+##### Map 2 #####
+# 房源分布热力图
+Am_map_2 = folium.Map(location=[Amsterdam_latitude, Amsterdam_longitude], zoom_start=12)
+
+# 绘制热力图
+HeatMap(airbnb[['latitude', 'longitude']],
+        radius=10,
+        gradient={0.2: 'blue',
+                  0.4: 'purple',
+                  0.6: 'orange',
+                  0.8: 'red'}).add_to(Am_map_2)
+
+# 保存房源分布热力图
+Am_map_2.save('Amsterdam_Room_Heatmap.html')
+
+##### Map 3 #####
+# 房源评论数量分布图
+Am_map_3 = folium.Map(location=[Amsterdam_latitude, Amsterdam_longitude], zoom_start=12)
+# 房源评论数量统计
+reviews = pd.DataFrame(airbnb['number_of_reviews'].groupby(airbnb['neighbourhood']).sum())
+reviews.reset_index(level=0, inplace=True)
+
+# 设置社区标签
+create_neighbourhood_marker(Am_geo, Am_map_3)
+# 绘制分布图
+choropleth_map = folium.Choropleth(geo_data=geojson_path,
+                                   data=reviews,
+                                   columns=['neighbourhood', 'number_of_reviews'],
+                                   key_on='feature.properties.neighbourhood',
+                                   fill_color='YlOrRd',
+                                   legend_name='Number of Reviews')
+choropleth_map.add_to(Am_map_3)
+
+# 保存房源评论数量分布图
+Am_map_3.save('Amsterdam_Review_Number_Choropleth.html')
 
 ##### Map 4 #####
 # 前100热门房源分布图
